@@ -1,0 +1,24 @@
+#!/bin/bash
+
+rm -rf build
+clear
+
+CFLAGS='-Ilib -lglfw -lGL -lGLEW -lGLU -lm'
+BUILDDIR='build'
+
+FILES=`find src -name '*.c'`
+
+for FILE in $FILES
+do
+    DIRECTORY="${FILE%/*}"
+
+    echo "Compiling: $FILE"
+
+    mkdir -p $BUILDDIR/$DIRECTORY
+
+    gcc -c $FILE -o $BUILDDIR/$FILE.o $CFLAGS
+done
+
+OBJECTS=`find build -name '*.o'`
+
+gcc $OBJECTS -o engine $CFLAGS
