@@ -6,6 +6,8 @@
 #include "graphics/render.h"
 #include "graphics/utils.h"
 
+#include "universe/universe.h"
+
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -27,7 +29,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 // Callback functions
 
 int main(int argc, char **argv) {
-    GraphicsEngine *engine = graphics_engine_init(error_callback, key_callback);
+/*    GraphicsEngine *engine = graphics_engine_init(error_callback, key_callback);
 
     if (!engine) {
         // Engine initialization failed
@@ -60,7 +62,9 @@ int main(int argc, char **argv) {
     pthread_join(engine->render_thread, NULL);
     pthread_join(engine->velocity_thread, NULL);
 
-    graphics_engine_close(engine);
+    graphics_engine_close(engine);*/
+
+    Universe *universe = universe_init();
 
     return 0;
 }
