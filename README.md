@@ -15,7 +15,7 @@ To get started with the project, follow these steps:
 
 1. Clone the repository to your local machine:
 
-```git clone https://github.com/your-username/universe-simulator.git```
+```git clone https://github.com/Code-Sploit/Odyssey.git```
 
 2. Compile the project:
 
@@ -66,9 +66,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - `graphics_line_new`: Creates a new line object.
 - `graphics_engine_add_callback`: Adds a callback function to the graphics engine.
 - `graphics_engine_del_callback`: Removes a callback function from the graphics engine.
-- `graphics_engine_handle_callbacks`: Handles callback functions.
 - `graphics_velocity_set`: Sets the velocity of an object.
-- `graphics_engine_render`: Renders the graphics.
 - `graphics_engine_set_origin`: Sets the origin of the graphics engine.
 - `graphics_engine_set_camera`: Sets the camera position and orientation.
 - `graphics_engine_rotate_camera`: Rotates the camera.
