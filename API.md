@@ -5,15 +5,24 @@ This document provides an overview of the API for the graphics engine and relate
 ## Contents
 
 1. [Containers](#containers)
+   
     1.1 [Graphics](#containers_graphics)
+   
     1.2 [Universe](#containers_universe)
+
     1.3 [Atoms](#containers_atoms)
-2. [Functions](#functions)
+
+3. [Functions](#functions)
+
     1.1 [Graphics](#functions_graphics)
+
     1.2 [Universe](#functions_universe)
+
     1.3 [Atoms](#functions_atoms)
+
     1.4 [Utils](#functions_utils)
-3. [Universe Config](#universe_config)
+
+5. [Universe Config](#universe_config)
 ---
 ## Containers <a name="containers"></a>
 
