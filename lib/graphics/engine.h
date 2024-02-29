@@ -15,7 +15,7 @@
 
 #define ENGINE_DEFAULT_WIDTH            1920
 #define ENGINE_DEFAULT_HEIGHT           1080
-#define ENGINE_DEFAULT_TITLE            "Graphics Engine (v1.0)"
+#define ENGINE_DEFAULT_TITLE            "Odyssey (v1.0)"
 #define ENGINE_DEFAULT_PRE_MATRIX_MODE  GL_PROJECTION
 #define ENGINE_DEFAULT_POST_MATRIX_MODE GL_MODELVIEW
 #define ENGINE_DEFAULT_FOVY             90.0f
