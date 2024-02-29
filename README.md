@@ -41,11 +41,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Structures
 
-- `GraphicsPosition`: Represents a position in 3D space.
+- `GraphicsPosition`: Represents a position in 3D space. (used by graphics)
 - `GraphicsColor`: Represents a color with RGB components.
 - `GraphicsVelocity`: Represents velocity in 3D space.
 - `GraphicsSphere`: Represents a sphere object with position, velocity, color, and radius.
 - `GraphicsLine`: Represents a line object with start and end positions, color, and optional links to other objects.
+- `UniversePosition`: Represents a position in 3D space. (used by universe logic)
+- `UniverseBlock`: Represents a universe block
+- `Universe`: Represents the unviverse containing a 3D array of UniverseBlocks
+- `Atom`: Represents an atom containing some data about the atom
 
 ### Enums
 
@@ -71,4 +75,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - `graphics_engine_set_camera`: Sets the camera position and orientation.
 - `graphics_engine_rotate_camera`: Rotates the camera.
 
+### API
 
+See API.md for a more detailed API description and explanation
