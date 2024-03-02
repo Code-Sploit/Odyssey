@@ -72,6 +72,14 @@ This document provides an overview of the API for the graphics engine and relate
     - `link_start_type` Type of the object the start of the line is linked to. type: `GraphicsObjectType`
     - `link_end_type` Type of the object the end of the line is linked to. type: `GraphicsObjectType`
     - `is_linked` Indicator if the line is linked to objects or not. type: `bool`
+
+#### `GraphicsCube`
+- Description: Represents a cube object with a position in 3D space, color, size and velocity
+- Parameters:
+    - `position` 3D Position of the cube. type: `GraphicsPosition *`
+    - `velocity` Velocity of the cube. type: `GraphicsVelocity *`
+    - `color` Color of the cube. type: `GraphicsColor *`
+    - `size` Size of the cube. type: `float`
 ---
 ### Universe <a name="containers_universe"></a>
 
@@ -219,6 +227,14 @@ This document provides an overview of the API for the graphics engine and relate
     - `radius` Radius of the sphere. type: `double`
     - `slices` Amount of slices to use for the renderer. type: `int`
     - `stacks` Amount of stacks to use for the renderer. type: `int`
+
+#### `GraphicsCube *graphics_cube_new(GraphicsPosition *position, GraphicsVelocity *velocity, GraphicsColor *color, float size)`
+- Description: Creates a new GraphicsCube object
+- Parameters:
+    - `position` Position of the cube. type: `GraphicsPosition *`
+    - `velocity` Velocity of the cube. type: `GraphicsVelocity *`
+    - `color` Color of the cube. type: `GraphicsColor *`
+    - `size` Size of the cube. type: `float`
 ---
 ### Universe <a name="functions_universe"></a>
 
