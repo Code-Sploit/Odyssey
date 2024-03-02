@@ -50,13 +50,13 @@ int main(int argc, char **argv) {
     GraphicsPosition *position2 = graphics_pos_new(0.0f, 0.0f, 0.0f);
     GraphicsVelocity *velocity = graphics_velocity_new(0.0f, 0.0f, 0.1f);
     GraphicsVelocity *velocity2 = graphics_velocity_new(0.0f, 0.0f, -0.1f);
-    GraphicsSphere *sphere = graphics_sphere_new(position, velocity, color, 0.2f, 60, 60);
-    GraphicsSphere *sphere2 = graphics_sphere_new(position2, velocity2, color2, 0.2f, 60, 60);
+    GraphicsCube *cube = graphics_cube_new(position, velocity, color, 0.75f);
+    GraphicsCube *cube2 = graphics_cube_new(position2, velocity2, color2, 0.75f);
 
-    GraphicsLine *line = graphics_line_new(sphere->position, sphere2->position, graphics_color_new(0.0f, 1.0f, 0.0f), sphere, sphere2, GRAPHICS_OBJECT_SPHERE, GRAPHICS_OBJECT_SPHERE, true);
+    GraphicsLine *line = graphics_line_new(cube->position, cube2->position, graphics_color_new(0.0f, 1.0f, 0.0f), cube, cube2, GRAPHICS_OBJECT_CUBE, GRAPHICS_OBJECT_CUBE, true);
 
-    graphics_engine_object_add(engine, sphere, GRAPHICS_OBJECT_SPHERE);
-    graphics_engine_object_add(engine, sphere2, GRAPHICS_OBJECT_SPHERE);
+    graphics_engine_object_add(engine, cube, GRAPHICS_OBJECT_CUBE);
+    graphics_engine_object_add(engine, cube2, GRAPHICS_OBJECT_CUBE);
     graphics_engine_object_add(engine, line, GRAPHICS_OBJECT_LINE);
 
     pthread_join(engine->render_thread, NULL);

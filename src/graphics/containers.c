@@ -108,3 +108,20 @@ GraphicsLine *graphics_line_new(GraphicsPosition *start, GraphicsPosition *end, 
 
     return line;
 }
+
+GraphicsCube *graphics_cube_new(GraphicsPosition *position, GraphicsVelocity *velocity, GraphicsColor *color, float size)
+{
+    GraphicsCube *cube = calloc(1, sizeof(GraphicsCube));
+
+    if (!cube)
+    {
+        return NULL;
+    }
+
+    cube->position = position;
+    cube->velocity = velocity;
+    cube->color    = color;
+    cube->size     = size;
+
+    return cube;
+}

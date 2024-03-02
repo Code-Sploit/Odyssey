@@ -104,6 +104,7 @@ typedef enum GraphicsObjectType
 {
     GRAPHICS_OBJECT_SPHERE,
     GRAPHICS_OBJECT_LINE,
+    GRAPHICS_OBJECT_CUBE,
     GRAPHICS_OBJECT_NOLINK
 } GraphicsObjectType;
 
@@ -122,6 +123,16 @@ typedef struct GraphicsLine
 
     bool is_linked;
 } GraphicsLine;
+
+typedef struct GraphicsCube
+{
+    GraphicsPosition *position;
+    GraphicsVelocity *velocity;
+
+    GraphicsColor *color;
+
+    float size;
+} GraphicsCube;
 
 GraphicsColor *graphics_color_new(double r, double g, double b);
 
@@ -183,9 +194,11 @@ typedef struct GraphicsEngine
     {
         GraphicsSphere **spheres;
         GraphicsLine **lines;
+        GraphicsCube **cubes;
 
         int sphere_count;
         int line_count;
+        int cube_count;
     } objects;
 
     void *error_callback;

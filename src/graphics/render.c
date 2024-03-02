@@ -40,6 +40,78 @@ void graphics_engine_draw_axises(GraphicsEngine *engine, float size)
     }
 }
 
+void graphics_engine_render_cube(GraphicsPosition *position, GraphicsColor *color, float size)
+{
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix(); // Push current matrix
+    glTranslatef(position->x, position->y, position->z);
+
+    glColor3f(color->r, color->g, color->b);
+
+    float halfSize = size / 2.0f;
+
+    // Define the vertices of the cube
+    float vertices[] = {
+        // Front face
+        -halfSize, -halfSize, halfSize,
+         halfSize, -halfSize, halfSize,
+         halfSize,  halfSize, halfSize,
+        -halfSize,  halfSize, halfSize,
+
+        // Back face
+        -halfSize, -halfSize, -halfSize,
+         halfSize, -halfSize, -halfSize,
+         halfSize,  halfSize, -halfSize,
+        -halfSize,  halfSize, -halfSize,
+
+        // Top face
+        -halfSize, halfSize, halfSize,
+         halfSize, halfSize, halfSize,
+         halfSize, halfSize, -halfSize,
+        -halfSize, halfSize, -halfSize,
+
+        // Bottom face
+        -halfSize, -halfSize, halfSize,
+         halfSize, -halfSize, halfSize,
+         halfSize, -halfSize, -halfSize,
+        -halfSize, -halfSize, -halfSize,
+
+        // Right face
+        halfSize, -halfSize, halfSize,
+        halfSize, -halfSize, -halfSize,
+        halfSize, halfSize, -halfSize,
+        halfSize, halfSize, halfSize,
+
+        // Left face
+        -halfSize, -halfSize, halfSize,
+        -halfSize, -halfSize, -halfSize,
+        -halfSize, halfSize, -halfSize,
+        -halfSize, halfSize, halfSize
+    };
+
+    // Define the indices to draw the cube
+    unsigned int indices[] = {
+        0, 1, 2, 2, 3, 0,       // Front face
+        4, 5, 6, 6, 7, 4,       // Back face
+        8, 9, 10, 10, 11, 8,    // Top face
+        12, 13, 14, 14, 15, 12, // Bottom face
+        16, 17, 18, 18, 19, 16, // Right face
+        20, 21, 22, 22, 23, 20  // Left face
+    };
+
+    // Enable vertex arrays
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(3, GL_FLOAT, 0, vertices);
+
+    // Draw the cube
+    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, indices);
+
+    // Disable vertex arrays
+    glDisableClientState(GL_VERTEX_ARRAY);
+
+    glPopMatrix(); // Restore previous matrix
+}
+
 void graphics_engine_render_sphere(GraphicsPosition *position, GraphicsColor *color, float radius, int slices, int stacks)
 {
     //printf("Sphere [%d]: position=(%f, %f, %f) color=(%f, %f, %f) radius=%f slices=%d stacks=%d\n", 0, position->x, position->y, position->z, color->r, color->g, color->b, radius, slices, stacks);
@@ -229,6 +301,20 @@ void *graphics_engine_render(void *__argument)
             }
 
             graphics_engine_render_line(line->start, line->end, line->color);
+        }
+
+        for (int i = 0; i < engine->objects.cube_count; i++)
+        {
+            GraphicsCube *cube = engine->objects.cubes[i];
+
+            if (!cube)
+            {
+                DEBUG(GRAPHICS_ENGINE_ERROR, "Failed to get cube object");
+
+                pthread_exit(NULL);
+            }
+
+            graphics_engine_render_cube(cube->position, cube->color, cube->size);
         }
 
         glfwSwapBuffers(engine->window.window);

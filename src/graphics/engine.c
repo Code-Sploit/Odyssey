@@ -83,6 +83,11 @@ GraphicsEngine *graphics_engine_init(void *error_callback, void *key_callback)
     engine->objects.lines      = calloc(1, sizeof(GraphicsLine *));
     engine->objects.line_count = 0;
 
+    // Allocate a dummy cube
+
+    engine->objects.cubes      = calloc(1, sizeof(GraphicsCube *));
+    engine->objects.cube_count = 0;
+
     // Set camera position
 
     engine->camera.x = ENGINE_DEFAULT_CAMERA_X;
@@ -228,6 +233,21 @@ void *graphics_velocity_handler(void *arg)
             }
         }
 
+        for (int i = 0; i < engine->objects.cube_count; i++)
+        {
+            GraphicsCube *cube = engine->objects.cubes[i];
+
+            if (!cube)
+            {
+                pthread_exit(NULL);
+            }
+
+            velocity = cube->velocity;
+            old_position = cube->position;
+
+            cube->position = graphics_velocity_calculate_new_position(velocity, old_position, 0.1f);
+        }
+
         usleep(100000);
     }
 
@@ -279,6 +299,14 @@ void graphics_engine_object_add(GraphicsEngine *engine, void *object, GraphicsOb
         engine->objects.lines = realloc(engine->objects.lines, engine->objects.line_count * sizeof(GraphicsLine *));
 
         engine->objects.lines[engine->objects.line_count - 1] = (GraphicsLine *) object;
+    }
+    else if (type == GRAPHICS_OBJECT_CUBE)
+    {
+        engine->objects.cube_count++;
+
+        engine->objects.cubes = realloc(engine->objects.cubes, engine->objects.cube_count * sizeof(GraphicsCube *));
+
+        engine->objects.cubes[engine->objects.cube_count - 1] = (GraphicsCube *) object;
     }
     else
     {
